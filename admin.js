@@ -1,15 +1,15 @@
 // import data from "./all.js";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 function checkRule() {
   let rules = getCookie("role");
   if (rules === null || rules.indexOf("admin") === -1) {
     deleteCookie("userId");
-    Cookies.remove("userId");
+    // Cookies.remove("userId");
     deleteCookie("token");
-    Cookies.remove("token");
+    // Cookies.remove("token");
     deleteCookie("role");
-    Cookies.remove("role");
+    // Cookies.remove("role");
     clearCookies(["userId", "token", "role"]);
     alert("請登入管理員帳號。")
     window.location.href = "./index.html";
