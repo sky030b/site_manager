@@ -129,7 +129,7 @@ function login(e) {
 // function navInit() {
 //   nav.innerHTML = `
 //   <div class="container justify-content-between">
-//     <h5 class="col-1 m-0 logo"><a href="../home.html"
+//     <h5 class="col-1 m-0 logo"><a href="../index.html"
 //       class="text-decoration-none text-dark">LOGO</a></h5>
 //     <div class="col-2 text-right d-flex justify-content-end">
 //       <button class="btn btn-outline-primary mx-2 login">登入</button>

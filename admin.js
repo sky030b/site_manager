@@ -7,7 +7,7 @@ function checkRule() {
     deleteCookie("userId");
     deleteCookie("token");
     deleteCookie("role");
-    window.location.href = "./home.html";
+    window.location.href = "./index.html";
   }
 }
 
@@ -178,7 +178,7 @@ function logout() {
   deleteCookie("userId");
   deleteCookie("token");
   deleteCookie("role");
-  window.location.href = "./home.html";
+  window.location.href = "./index.html";
 }
 
 const addMain = document.querySelector(".addMain");
