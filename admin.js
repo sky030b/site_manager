@@ -186,11 +186,11 @@ logoutBtn.addEventListener("click", logout);
 function logout() {
   alert("登出成功");
   deleteCookie("userId");
-  Cookies.remove("userId");
+  // Cookies.remove("userId");
   deleteCookie("token");
-  Cookies.remove("token");
+  // Cookies.remove("token");
   deleteCookie("role");
-  Cookies.remove("role");
+  // Cookies.remove("role");
   clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }
