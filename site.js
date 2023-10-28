@@ -219,10 +219,10 @@ const collected = document.querySelector(".collected");
 collected.addEventListener("click", showCollected);
 
 function logout() {
-  alert("登出成功");
   deleteCookie("userId");
   deleteCookie("token");
   deleteCookie("role");
+  alert("登出成功");
   window.location.href = "./index.html";
 }
 const logoutBtn = document.querySelector(".logoutBtn");
