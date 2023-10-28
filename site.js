@@ -6,6 +6,7 @@ function checkRule() {
     deleteCookie("userId");
     deleteCookie("token");
     deleteCookie("role");
+    clearCookies(["userId", "token", "role"]);
     alert("請先登入。")
     window.location.href = "./index.html";
   }
@@ -43,9 +44,14 @@ function getCookie(name) {
   return null;
 }
 
-
 function deleteCookie(name) {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+function clearCookies(cookieNames) {
+  cookieNames.forEach(name => {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
 }
 
 async function getStatus(item, index) {
@@ -224,6 +230,7 @@ function logout() {
   deleteCookie("userId");
   deleteCookie("token");
   deleteCookie("role");
+  clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }
 const logoutBtn = document.querySelector(".logoutBtn");
