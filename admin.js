@@ -3,10 +3,10 @@
 function checkRule() {
   let rules = getCookie("role");
   if (rules === null || rules.indexOf("admin") === -1) {
-    alert("請登入管理員帳號。")
     deleteCookie("userId");
     deleteCookie("token");
     deleteCookie("role");
+    alert("請登入管理員帳號。")
     window.location.href = "./index.html";
   }
 }
@@ -44,7 +44,7 @@ function getCookie(name) {
 }
 
 function deleteCookie(name) {
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
 }
 
 const logo = document.querySelector(".logo");

@@ -3,10 +3,10 @@
 function checkRule() {
   let rules = getCookie("role");
   if (rules === null || rules.indexOf("normal user") === -1) {
-    alert("請先登入。")
     deleteCookie("userId");
     deleteCookie("token");
     deleteCookie("role");
+    alert("請先登入。")
     window.location.href = "./index.html";
   }
 }
