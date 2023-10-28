@@ -15,7 +15,6 @@ async function getData() {
     siteInit();
   } catch (e) {
     console.log(e);
-    alert(e.response.data);
   }
 }
 getData();
@@ -52,7 +51,6 @@ async function signUpAPI(data) {
     login();
   } catch (e) {
     console.log(e);
-    alert(e.response.data);
   }
 }
 
@@ -93,7 +91,6 @@ async function loginAPI(data) {
     document.cookie = `token=${v.data.accessToken}`;
     document.cookie = `role=${v.data.user.role}`;
 
-    alert(v.data.user.role)
     if (v.data.user.role.indexOf("admin") !== -1) {
       window.location.href = "./admin.html";
     } else {
@@ -101,7 +98,6 @@ async function loginAPI(data) {
     }
   } catch (e) {
     console.log(e);
-    alert(e.response.data);
   }
 }
 
