@@ -1,11 +1,15 @@
 // import data from "./all.js";
+import Cookies from "js-cookie";
 
 function checkRule() {
   let rules = getCookie("role");
   if (rules === null || rules.indexOf("admin") === -1) {
     deleteCookie("userId");
+    Cookies.remove("userId");
     deleteCookie("token");
+    Cookies.remove("token");
     deleteCookie("role");
+    Cookies.remove("role");
     clearCookies(["userId", "token", "role"]);
     alert("請登入管理員帳號。")
     window.location.href = "./index.html";
@@ -182,8 +186,11 @@ logoutBtn.addEventListener("click", logout);
 function logout() {
   alert("登出成功");
   deleteCookie("userId");
+  Cookies.remove("userId");
   deleteCookie("token");
+  Cookies.remove("token");
   deleteCookie("role");
+  Cookies.remove("role");
   clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }

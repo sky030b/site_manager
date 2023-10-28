@@ -1,12 +1,15 @@
 // import data from "./all.js";
+import Cookies from "js-cookie";
 
 function checkRule() {
   let rules = getCookie("role");
   if (rules === null || rules.indexOf("normal user") === -1) {
     deleteCookie("userId");
+    Cookies.remove("userId");
     deleteCookie("token");
+    Cookies.remove("token");
     deleteCookie("role");
-    clearCookies(["userId", "token", "role"]);
+    Cookies.remove("role"); clearCookies(["userId", "token", "role"]);
     alert("請先登入。")
     window.location.href = "./index.html";
   }
@@ -228,9 +231,11 @@ collected.addEventListener("click", showCollected);
 function logout() {
   alert("登出成功");
   deleteCookie("userId");
+  Cookies.remove("userId");
   deleteCookie("token");
+  Cookies.remove("token");
   deleteCookie("role");
-  clearCookies(["userId", "token", "role"]);
+  Cookies.remove("role"); clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }
 const logoutBtn = document.querySelector(".logoutBtn");
