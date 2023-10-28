@@ -10,7 +10,7 @@ function checkRule() {
     // Cookies.remove("token");
     deleteCookie("role");
     // Cookies.remove("role");
-    clearCookies(["userId", "token", "role"]);
+    // clearCookies(["userId", "token", "role"]);
     alert("請登入管理員帳號。")
     window.location.href = "./index.html";
   }
@@ -191,7 +191,7 @@ function logout() {
   // Cookies.remove("token");
   deleteCookie("role");
   // Cookies.remove("role");
-  clearCookies(["userId", "token", "role"]);
+  // clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }
 

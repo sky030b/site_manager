@@ -10,7 +10,7 @@ function checkRule() {
     // Cookies.remove("token");
     deleteCookie("role");
     // Cookies.remove("role"); 
-    clearCookies(["userId", "token", "role"]);
+    // clearCookies(["userId", "token", "role"]);
     alert("請先登入。")
     window.location.href = "./index.html";
   }
@@ -237,7 +237,7 @@ function logout() {
   // Cookies.remove("token");
   deleteCookie("role");
   // Cookies.remove("role"); 
-  clearCookies(["userId", "token", "role"]);
+  // clearCookies(["userId", "token", "role"]);
   window.location.href = "./index.html";
 }
 const logoutBtn = document.querySelector(".logoutBtn");
