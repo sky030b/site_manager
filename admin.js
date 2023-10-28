@@ -13,7 +13,7 @@ function checkRule() {
 
 let data = {};
 async function getData() {
-  let url = "http://localhost:3000";
+  let url = "https://site-manager-db.onrender.com";
   try {
     let v = await axios.get(url + "/views");
     data.views = v.data;
@@ -100,7 +100,7 @@ function adminInit() {
 }
 
 async function getStatus(item, index) {
-  let url = "http://localhost:3000/600/collects";
+  let url = "https://site-manager-db.onrender.com/600/collects";
   try {
     let c = await axios.get(`${url}/${item.id}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     return c.status;
@@ -111,7 +111,7 @@ async function getStatus(item, index) {
 }
 
 async function addCollect(item, index) {
-  let url = `http://localhost:3000/600/collects`;
+  let url = `https://site-manager-db.onrender.com/600/collects`;
   try {
     let newCollect = { ...item };
     newCollect.userId = getCookie("userId");
@@ -120,13 +120,13 @@ async function addCollect(item, index) {
   } catch (error) {
     alert("收藏失敗");
   }
-  let c2 = await axios.get(`http://localhost:3000/collects`);
+  let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
   data.collects = c2.data;
 }
 
 
 async function rmCollect(id) {
-  let url = `http://localhost:3000/600/collects/${id}`;
+  let url = `https://site-manager-db.onrender.com/600/collects/${id}`;
   try {
     let c = await axios.delete(url, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     alert("取消收藏");
@@ -134,7 +134,7 @@ async function rmCollect(id) {
     alert("取消失敗");
   }
 
-  let c2 = await axios.get(`http://localhost:3000/collects`);
+  let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
   data.collects = c2.data;
 }
 
@@ -212,7 +212,7 @@ function addSite() {
     newSite.id = data.views[data.views.length - 1].id + 1;
     data.views.push(newSite);
 
-    let url = "http://localhost:3000/views";
+    let url = "https://site-manager-db.onrender.com/views";
     try {
       let c = await axios.post(url, newSite);
       alert("新增成功");
@@ -280,7 +280,7 @@ function admin() {
 
 async function delSite(item, index) {
   if (data.views[index].id === item.id) {
-    let url = `http://localhost:3000`;
+    let url = `https://site-manager-db.onrender.com`;
     try {
       await axios.delete(url + `/views/${item.id}`);
       alert("刪除成功");
@@ -326,7 +326,7 @@ function editSite(item, index) {
     // data.views.splice(data.views.indexOf(item), 1, editSite);
 
     try {
-      let url = `http://localhost:3000`;
+      let url = `https://site-manager-db.onrender.com`;
       await axios.put(url + `/views/${item.id}`, editSite);
       alert("修改成功");
       if (await getStatus(item, index) === 200 || await getStatus(item, index) === 304) {

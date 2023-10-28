@@ -7,7 +7,7 @@ const site = document.querySelector(".site");
 // import data from "./all.js";
 let data = {};
 async function getData() {
-  let url = "http://localhost:3000";
+  let url = "https://site-manager-db.onrender.com";
   try {
     let v = await axios.get(url + "/views");
     data.views = v.data;
@@ -46,7 +46,7 @@ let emailAndPassword = `<div class="mb-3">
 </div>`;
 
 async function signUpAPI(data) {
-  let url = "http://localhost:3000/signUp";
+  let url = "https://site-manager-db.onrender.com/signUp";
   try {
     let v = await axios.post(url, data);
     alert("註冊成功");
@@ -84,7 +84,7 @@ function signUp(e) {
 
 let token = "";
 async function loginAPI(data) {
-  let url = "http://localhost:3000/login";
+  let url = "https://site-manager-db.onrender.com/login";
   try {
     let v = await axios.post(url, data);
     alert("登入成功");
