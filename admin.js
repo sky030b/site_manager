@@ -21,7 +21,6 @@ async function getData() {
     data.collects = c.data;
   } catch (e) {
     console.log(e);
-    alert(e.response.data);
     data.collects = [];
   }
   checkRule();
@@ -220,7 +219,6 @@ function addSite() {
       newSiteDescription.value = "";
     } catch (e) {
       console.log(e);
-      alert(e.response.data);
     }
 
     // alert("新增成功");
@@ -299,7 +297,6 @@ async function delSite(item, index) {
 
 function editSite(item, index) {
   logo.innerHTML = `後台`;
-  console.log(item.description)
 
   adminMain.innerHTML = `
   <div class="mb-3">

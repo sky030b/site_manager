@@ -17,7 +17,6 @@ async function getData() {
     console.log(e);
     alert(e.response.data);
   }
-  console.log(data);
 }
 getData();
 
@@ -175,7 +174,6 @@ function siteInit() {
 
   data.views.forEach((item, index) => {
     let spot = document.querySelector(`.btn${index}`);
-    console.log(spot)
     spot.addEventListener("click", function (e) {
       e.preventDefault();
       siteSpot(index);

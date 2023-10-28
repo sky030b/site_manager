@@ -21,7 +21,6 @@ async function getData() {
     data.collects = c.data;
   } catch (e) {
     console.log(e);
-    alert(e.response.data);
     data.collects = [];
   }
   checkRule();
