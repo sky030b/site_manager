@@ -44,6 +44,8 @@ function getCookie(name) {
 }
 
 function deleteCookie(name) {
+  // document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  // 加了path好像就不行了
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
 }
 
@@ -214,7 +216,6 @@ async function showCollected() {
     }
   })
 }
-
 const collected = document.querySelector(".collected");
 collected.addEventListener("click", showCollected);
 
