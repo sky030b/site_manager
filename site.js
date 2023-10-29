@@ -50,9 +50,30 @@ function deleteCookie(name) {
 }
 
 async function getStatus(item, index) {
-  let url = "https://site-manager-db.onrender.com/600/collects";
+  // let url = "https://site-manager-db.onrender.com/600/collects";
+  // try {
+  //   let c = await axios.get(`${url}/${item.id}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
+  //   return c.status;
+  // } catch (error) {
+  //   console.log(error);
+  //   return error.response.status;
+  // }
+
+  let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
+  data.collects = c2.data;
+
+  let pointerId = 0;
+  for (let i = 0; i < data.collects.length; i++) {
+    if (data.collects[i].viewId == item.id && data.collects[i].userId == getCookie("userId")) {
+      pointerId = data.collects[i].id;
+      break;
+    }
+  }
+
+  console.log(123)
   try {
-    let c = await axios.get(`${url}/${item.id}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
+    let url = "https://site-manager-db.onrender.com/600/collects";
+    let c = await axios.get(`${url}/${pointerId}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     return c.status;
   } catch (error) {
     console.log(error);
@@ -61,10 +82,13 @@ async function getStatus(item, index) {
 }
 
 async function addCollect(item, index) {
-  let url = `https://site-manager-db.onrender.com/600/collects`;
   try {
-    let newCollect = { ...item };
+    let newCollect = {};
+    newCollect.viewId = item.id;
+    newCollect.name = item.name;
+    newCollect.description = item.description;
     newCollect.userId = getCookie("userId");
+    let url = `https://site-manager-db.onrender.com/600/collects`;
     let c = await axios.post(url, newCollect, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     alert("收藏成功");
   } catch (error) {
@@ -74,17 +98,37 @@ async function addCollect(item, index) {
   data.collects = c2.data;
 }
 
-async function rmCollect(id) {
-  let url = `https://site-manager-db.onrender.com/600/collects/${id}`;
+async function rmCollect(viewId) {
+  // let url = `https://site-manager-db.onrender.com/600/collects/${id}`;
+  // try {
+  //   let c = await axios.delete(url, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
+  //   alert("取消收藏");
+  // } catch (error) {
+  //   alert("取消失敗");
+  // }
+
+  // let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
+  // data.collects = c2.data;
+
   try {
+    // let c2 = await axios.get(url + "/collects");
+    // data.collects = c2.data;
+    let pointerId = 0;
+    for (let i = 0; i < data.collects.length; i++) {
+      if (data.collects[i].viewId == viewId && data.collects[i].userId == getCookie("userId")) {
+        pointerId = data.collects[i].id;
+      }
+    }
+    console.log(77)
+    let url = `https://site-manager-db.onrender.com/600/collects/${pointerId}`;
     let c = await axios.delete(url, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     alert("取消收藏");
   } catch (error) {
     alert("取消失敗");
   }
-
   let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
   data.collects = c2.data;
+
 }
 
 const logo = document.querySelector(".logo");
@@ -174,6 +218,9 @@ async function siteSpot(item, index) {
 async function showCollected() {
   let collectedStr = "";
 
+  let c2 = await axios.get(`https://site-manager-db.onrender.com/collects`);
+  data.collects = c2.data;
+
   data.collects.forEach((item, index) => {
     if (item.userId == getCookie("userId")) {
       collectedStr += `
@@ -201,7 +248,7 @@ async function showCollected() {
 
 
   if (collectedStr === "") {
-    collectedStr = "目前尚無收藏景點。"
+    collectedStr = `<div class="container">目前尚無收藏景點。</div>`
   }
   site.innerHTML = `<h1>收藏列表</h1><div class="row">${collectedStr}</div>`
 
@@ -210,7 +257,7 @@ async function showCollected() {
       let collected = document.querySelector(`.collection-${item.id}`);
       collected.addEventListener("click", async function (e) {
         e.preventDefault();
-        await rmCollect(item.id);
+        await rmCollect(item.viewId);
         await showCollected();
       })
     }
