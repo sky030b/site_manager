@@ -147,7 +147,7 @@ async function rmCollect(viewId) {
         pointerId = data.collects[i].id;
       }
     }
-    console.log(77)
+    // console.log(77)
     let url = `https://site-manager-db.onrender.com/600/collects/${pointerId}`;
     let c = await axios.delete(url, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     alert("取消收藏");
