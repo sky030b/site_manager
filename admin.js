@@ -110,7 +110,6 @@ async function getStatus(item, index) {
     }
   }
 
-  console.log(123)
   try {
     let url = "https://site-manager-db.onrender.com/600/collects";
     let c = await axios.get(`${url}/${pointerId}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
@@ -138,7 +137,7 @@ async function addCollect(item, index) {
   data.collects = c2.data;
 }
 
-async function rmCollect(id) {
+async function rmCollect(viewId) {
   try {
     // let c2 = await axios.get(url + "/collects");
     // data.collects = c2.data;
@@ -305,7 +304,16 @@ async function delSite(item, index) {
       await axios.delete(url + `/views/${item.id}`);
       alert("刪除成功");
       if (await getStatus(item, index) === 200 || await getStatus(item, index) === 304) {
-        await axios.delete(url + `/collects/${item.id}`);
+
+        let pointerId = 0;
+        for (let i = 0; i < data.collects.length; i++) {
+          if (data.collects[i].viewId == item.id && data.collects[i].userId == getCookie("userId")) {
+            pointerId = data.collects[i].id;
+            break;
+          }
+        }
+
+        await axios.delete(url + `/600/collects/${pointerId}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
       }
       let v = await axios.get(url + "/views");
       data.views = v.data;
@@ -339,7 +347,7 @@ function editSite(item, index) {
   let newEditDescription = document.querySelector(".newEditDescription");
   let editSubmit = document.querySelector(".editSubmit");
   editSubmit.addEventListener("click", async function (e) {
-    let editSite = item;
+    let editSite = { ...item };
     editSite.name = newEditName.value;
     editSite.description = newEditDescription.value;
     // data.views.splice(data.views.indexOf(item), 1, editSite);
@@ -349,7 +357,16 @@ function editSite(item, index) {
       await axios.put(url + `/views/${item.id}`, editSite);
       alert("修改成功");
       if (await getStatus(item, index) === 200 || await getStatus(item, index) === 304) {
-        await axios.put(url + `/collects/${item.id}`, editSite);
+        // await axios.put(url + `/collects/${item.id}`, editSite);
+
+        let pointerId = 0;
+        for (let i = 0; i < data.collects.length; i++) {
+          if (data.collects[i].viewId == item.id && data.collects[i].userId == getCookie("userId")) {
+            pointerId = data.collects[i].id;
+            break;
+          }
+        }
+        await axios.patch(url + `/600/collects/${pointerId}`, editSite, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
       }
       let v = await axios.get(url + "/views");
       data.views = v.data;
