@@ -61,7 +61,7 @@ allSite.addEventListener("click", function (e) {
 
 const adminMain = document.querySelector(".adminMain");
 function adminInit() {
-  logo.innerHTML = `<a href="../admin.html"
+  logo.innerHTML = `<a href="./admin.html"
     class="text-decoration-none text-dark">LOGO</a>`;
   let adminStr = "";
   data.views.forEach((item, index) => {
@@ -323,7 +323,6 @@ async function delSite(item, index) {
   }
   admin();
 }
-
 
 function editSite(item, index) {
   logo.innerHTML = `後台`;

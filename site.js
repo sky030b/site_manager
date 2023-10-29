@@ -70,7 +70,6 @@ async function getStatus(item, index) {
     }
   }
 
-  console.log(123)
   try {
     let url = "https://site-manager-db.onrender.com/600/collects";
     let c = await axios.get(`${url}/${pointerId}`, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
@@ -119,7 +118,7 @@ async function rmCollect(viewId) {
         pointerId = data.collects[i].id;
       }
     }
-    console.log(77)
+
     let url = `https://site-manager-db.onrender.com/600/collects/${pointerId}`;
     let c = await axios.delete(url, { headers: { "authorization": `Bearer ${getCookie("token")}` } });
     alert("取消收藏");
