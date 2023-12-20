@@ -1,3 +1,3 @@
 "# site_manager" 
-"# site_manager" 
-"# site_manager" 
+
+附註：此專案使用了Render來模擬後端與資料庫，首次開啟時可能會需要等30秒左右才能使伺服器完成暖機，若有不便敬請見諒。
